@@ -15,13 +15,16 @@ class Films extends Component {
 
     page(e){
         if (e.target.innerHTML == 'previous' && this.state.page-1 > 0){
-            console.log(this.state.page);
-            this.setState({page:this.state.page-1});
+            this.setState({page:--this.state.page});
         }else if (e.target.innerHTML == 'Next' && this.state.page+1 < 500){
-            console.log(this.state.page);
-            this.setState({page:this.state.page+1});
+            this.setState({page:++this.state.page});
         }
-        console.log(e.target.className);
+        fetch('https://api.themoviedb.org/3/movie/popular?api_key=0a069e40003a06848a4adbee16ef69ce&language=en-US&page='+this.state.page)
+            .then( (response) => {
+                return response.json() })
+            .then( (json) => {
+                this.setState({films: json.results});
+            });
     }
 
     componentDidMount() {
@@ -30,15 +33,7 @@ class Films extends Component {
                 return response.json() })
             .then( (json) => {
                 this.setState({films: json.results});
-            });
-    };
-
-    componentWillUpdate() {
-        fetch('https://api.themoviedb.org/3/movie/popular?api_key=0a069e40003a06848a4adbee16ef69ce&language=en-US&page='+this.state.page)
-            .then( (response) => {
-                return response.json() })
-            .then( (json) => {
-                this.setState({films: json.results});
+                console.log(1);
             });
     };
 
