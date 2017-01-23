@@ -22,7 +22,7 @@ class Movie extends Component {
    render() {
         return(
             <div className="wrapper" onClick={this.details}>
-                    <div className="title">{this.props.title}</div>
+                    <div className="title">{this.props.title}dfgdfgfdg</div>
                     <Fav mid={this.props.lnk} />
                     <Genres className="genres" genreg={this.props.genres}/>
             </div>
