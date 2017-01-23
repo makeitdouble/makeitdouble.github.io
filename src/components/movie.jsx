@@ -31,4 +31,4 @@ class Movie extends Component {
 
 module.exports = Movie;
 
-/*upd*/
+/*ud*/
