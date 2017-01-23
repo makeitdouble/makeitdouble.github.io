@@ -24947,20 +24947,13 @@
 	    _createClass(Films, [{
 	        key: 'page',
 	        value: function page(e) {
-	            if (e.target.innerHTML == 'previous' && this.state.page - 1 > 0) {
-	                console.log(this.state.page);
-	                this.setState({ page: this.state.page - 1 });
-	            } else if (e.target.innerHTML == 'Next' && this.state.page + 1 < 500) {
-	                console.log(this.state.page);
-	                this.setState({ page: this.state.page + 1 });
-	            }
-	            console.log(e.target.className);
-	        }
-	    }, {
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
 	            var _this = this;
 
+	            if (e.target.innerHTML == 'previous' && this.state.page - 1 > 0) {
+	                this.setState({ page: --this.state.page });
+	            } else if (e.target.innerHTML == 'Next' && this.state.page + 1 < 500) {
+	                this.setState({ page: ++this.state.page });
+	            }
 	            fetch('https://api.themoviedb.org/3/movie/popular?api_key=0a069e40003a06848a4adbee16ef69ce&language=en-US&page=' + this.state.page).then(function (response) {
 	                return response.json();
 	            }).then(function (json) {
@@ -24968,14 +24961,15 @@
 	            });
 	        }
 	    }, {
-	        key: 'componentWillUpdate',
-	        value: function componentWillUpdate() {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
 	            var _this2 = this;
 
 	            fetch('https://api.themoviedb.org/3/movie/popular?api_key=0a069e40003a06848a4adbee16ef69ce&language=en-US&page=' + this.state.page).then(function (response) {
 	                return response.json();
 	            }).then(function (json) {
 	                _this2.setState({ films: json.results });
+	                console.log(1);
 	            });
 	        }
 	    }, {
@@ -25070,7 +25064,7 @@
 	        key: 'details',
 	        value: function details(e) {
 	            if (e.target == e.currentTarget) {
-	                window.location = 'update/movie-info/' + this.props.lnk;
+	                window.location = '/#/movie-info/' + this.props.lnk;
 	            }
 	        }
 	    }, {

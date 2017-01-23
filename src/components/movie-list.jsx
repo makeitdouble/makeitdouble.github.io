@@ -26,7 +26,6 @@ class Films extends Component {
                 this.setState({films: json.results});
             });
     }
-
     componentDidMount() {
         fetch('https://api.themoviedb.org/3/movie/popular?api_key=0a069e40003a06848a4adbee16ef69ce&language=en-US&page='+this.state.page)
             .then( (response) => {
