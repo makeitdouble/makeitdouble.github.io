@@ -9,9 +9,9 @@ import MovieInfo from './components/movie-info.jsx';
 
 ReactDOM.render(
     <Router history={hashHistory} >
-        <Route path="/public/#/" component={Films} />
-        <Route path="/public/#/movie-info/:id" component={MovieInfo} />
-        <Route path="/public/#/fav" component={FavFilms} />
+        <Route path="/" component={Films} />
+        <Route path="/movie-info/:id" component={MovieInfo} />
+        <Route path="/fav" component={FavFilms} />
     </Router>,
     document.getElementById('test')
 );

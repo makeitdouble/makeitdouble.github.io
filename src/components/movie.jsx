@@ -15,7 +15,7 @@ class Movie extends Component {
 
     details(e) {
         if (e.target == e.currentTarget){
-            window.location = '/public/#/movie-info/'+ this.props.lnk;
+            window.location = '/#/movie-info/'+ this.props.lnk;
         }
     }
 
