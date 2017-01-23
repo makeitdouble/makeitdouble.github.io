@@ -24969,7 +24969,6 @@
 	                return response.json();
 	            }).then(function (json) {
 	                _this2.setState({ films: json.results });
-	                console.log(1);
 	            });
 	        }
 	    }, {
@@ -25064,7 +25063,7 @@
 	        key: 'details',
 	        value: function details(e) {
 	            if (e.target == e.currentTarget) {
-	                window.location = '/#/movie-info/' + this.props.lnk;
+	                window.location = '/public/#/movie-info/' + this.props.lnk;
 	            }
 	        }
 	    }, {
@@ -25089,7 +25088,7 @@
 
 	module.exports = Movie;
 
-	/*upd*/
+	/*ussd*/
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("D:\\_git\\makeitdouble.github.io\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "movie.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
@@ -25234,6 +25233,7 @@
 	    _createClass(Fav, [{
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
+
 	            var localFilms = [];
 	            var storage = localStorage.getItem("films");
 
@@ -25732,7 +25732,6 @@
 
 	            var ss = [];
 	            var test = localStorage.getItem("films");
-	            console.log(test);
 	            if (test != null) {
 	                ss = test.split(',').map(Number);
 	                ss.map(function (f) {
