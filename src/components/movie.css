@@ -1,0 +1,93 @@
+.movie{
+    width:185px;
+    height:278px;
+    margin:20px;
+    float:left;
+    border-radius: 10px;
+}
+.fav {
+    position: absolute;
+    background: url('../../img/fav_flag_in.png');
+    width:29px;
+    height:38px;
+    left:-10px;
+    top:50px;
+    transition: all 0.3s;
+    z-index: 1;
+}
+.fav.active{
+    transition: all 0.3s;
+    background: url('../../img/fav_flag.png');
+}
+
+.fav i{
+    top: 40%;
+    position: absolute;
+    color: rgba(233,233,233,0.4);
+    cursor: pointer;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+    transition: all 0.3s;
+    overflow: hidden;
+}
+.fav i:hover{
+    color: rgba(255,248,107,0.7);
+    transition: all 0.3s;
+
+}
+.active.fav i{
+    transition: all 0.3s;
+    color: rgba(255,246,0,1);
+    text-shadow: 0 0 2px rgba(70,39,21,0.9);
+}
+
+
+
+.title{
+    letter-spacing: 0.4px;
+    background-color: rgba(80,65,50,0.5);
+    border-radius: 9px 9px 0 0 ;
+    font-size: 15px;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    text-shadow: 0 0 2px rgba(60,40,20,1);
+}
+.wrapper .genrs{
+    width: 175px;
+    position: absolute;
+    bottom: 0;
+    color:lightgrey;
+    font-size: 13px;
+    padding: 5px;
+    text-align: center;
+    background-color: rgba(80,65,50,0.5);
+    border-radius: 0 0 9px 9px;
+    text-shadow: 0 0 2px rgba(60,40,20,1);
+}
+.genrs a{
+    text-decoration: none;
+    color:lightgrey;
+}
+.movie{
+    position:relative;
+}
+
+.movie .wrapper{
+    cursor: pointer;
+    height:100%;
+}
+
+.header i{
+    cursor: pointer;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    color: rgba(255,246,0,1);
+    text-shadow: 0 0 2px rgba(70,39,21,0.9);
+}

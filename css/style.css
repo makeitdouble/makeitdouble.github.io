@@ -1,0 +1,51 @@
+html, body{
+    padding:0;
+    margin:0;
+}
+body{
+    background-color:#84746d;
+}
+
+.header{
+    padding:10px 10px 0;
+    height:40px;
+    background-color: rgba(255, 94, 23, 1);
+    color:white;
+}
+.header a{
+    width: 30px;
+    height:30px;
+    display: inline-block;
+}
+.header .logo{
+    background: url('../img/logo_t.png') no-repeat;
+    background-size: 30px;
+}
+.main-content{
+    background-color: white;
+    width:1150px;
+    margin: 0 auto;
+}
+
+
+div#test{
+    padding: 12px;
+}
+div#test:after{
+    content:"";
+    display: table;
+    clear: both;
+}
+
+.btn{
+    text-transform: capitalize;
+    text-align: center;
+    display: inline-block;
+    background-color: rgba(255, 94, 23, 1);
+    padding:5px;
+    margin: 10px;
+    width:100px;
+    font-weight: bold;
+    color:white;
+    cursor: pointer;
+}
