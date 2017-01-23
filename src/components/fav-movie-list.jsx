@@ -16,7 +16,6 @@ class FavFilms extends Component {
     componentDidMount() {
         var ss = [];
         var test = localStorage.getItem("films");
-        console.log(test);
         if (test != null){
             ss = test.split(',').map(Number);
             ss.map((f)=>{

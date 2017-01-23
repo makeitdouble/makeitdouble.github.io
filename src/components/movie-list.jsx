@@ -32,7 +32,6 @@ class Films extends Component {
                 return response.json() })
             .then( (json) => {
                 this.setState({films: json.results});
-                console.log(1);
             });
     };
 
