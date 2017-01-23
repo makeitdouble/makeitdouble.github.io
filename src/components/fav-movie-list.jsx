@@ -28,11 +28,9 @@ class FavFilms extends Component {
             })
         }
     };
-
-
+    
     render() {
-
-
+        
         if (this.state.fav){
             var films = this.state.fav.map( (film) => {
 

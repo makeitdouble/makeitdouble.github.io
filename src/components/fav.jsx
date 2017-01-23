@@ -10,6 +10,7 @@ class Fav extends React.Component {
      }
 
     componentWillMount(){
+
         var localFilms = [];
         var storage = localStorage.getItem("films");
 
