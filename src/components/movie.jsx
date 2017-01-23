@@ -1,7 +1,6 @@
 import React from 'react';
 require ('./movie.css');
 const { Component } = React;
-import {Link} from 'react-router';
 
 import Genres from './genres.jsx';
 import Fav from './fav.jsx';
@@ -31,3 +30,11 @@ class Movie extends Component {
 }
 
 module.exports = Movie;
+
+
+
+
+
+
+
+
