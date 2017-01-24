@@ -36,7 +36,6 @@ class Films extends Component {
     };
 
     render() {
-       /* var pages = this.page(this.state.pages);*/
         var films = this.state.films.map( (film) => {
             var movieStyle = {
                 backgroundImage: 'url(https://image.tmdb.org/t/p/w185/' + film.poster_path + ')'

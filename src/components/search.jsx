@@ -12,10 +12,6 @@ class Search extends Component {
         this.search = this.search.bind(this);
         this.hideDialog = this.hideDialog.bind(this);
     };
-    
-    componentDidMount() {
-        
-    };
 
     hideDialog(){
         this.setState({hide: true});
@@ -36,8 +32,6 @@ class Search extends Component {
     };
     
    render() {
-
-
        var films = this.state.films.map( (film) => {
            return (
                <div className="searchMovie" key={film.id} >
