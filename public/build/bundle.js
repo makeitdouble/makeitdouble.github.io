@@ -62,15 +62,19 @@
 
 	var _componentsMovieListJsx2 = _interopRequireDefault(_componentsMovieListJsx);
 
-	var _componentsFavMovieListJsx = __webpack_require__(225);
+	var _componentsSearchJsx = __webpack_require__(225);
+
+	var _componentsSearchJsx2 = _interopRequireDefault(_componentsSearchJsx);
+
+	var _componentsFavMovieListJsx = __webpack_require__(226);
 
 	var _componentsFavMovieListJsx2 = _interopRequireDefault(_componentsFavMovieListJsx);
 
-	var _componentsMovieInfoJsx = __webpack_require__(226);
+	var _componentsMovieInfoJsx = __webpack_require__(227);
 
 	var _componentsMovieInfoJsx2 = _interopRequireDefault(_componentsMovieInfoJsx);
 
-	__webpack_require__(229);
+	__webpack_require__(230);
 
 	_reactDom2['default'].render(_react2['default'].createElement(
 	    _reactRouter.Router,
@@ -79,6 +83,7 @@
 	    _react2['default'].createElement(_reactRouter.Route, { path: '/movie-info/:id', component: _componentsMovieInfoJsx2['default'] }),
 	    _react2['default'].createElement(_reactRouter.Route, { path: '/fav', component: _componentsFavMovieListJsx2['default'] })
 	), document.getElementById('test'));
+	_reactDom2['default'].render(_react2['default'].createElement(_componentsSearchJsx2['default'], null), document.getElementById('search'));
 
 /***/ },
 /* 1 */
@@ -25038,6 +25043,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(159);
+
 	var _genresJsx = __webpack_require__(217);
 
 	var _genresJsx2 = _interopRequireDefault(_genresJsx);
@@ -25696,6 +25703,108 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var Component = _react2['default'].Component;
+
+	var Search = (function (_Component) {
+	    _inherits(Search, _Component);
+
+	    function Search() {
+	        _classCallCheck(this, Search);
+
+	        _get(Object.getPrototypeOf(Search.prototype), 'constructor', this).call(this);
+	        this.state = {
+	            hide: true,
+	            films: [],
+	            query: null
+	        };
+	        this.search = this.search.bind(this);
+	        this.hideDialog = this.hideDialog.bind(this);
+	    }
+
+	    _createClass(Search, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {}
+	    }, {
+	        key: 'hideDialog',
+	        value: function hideDialog() {
+	            this.setState({ hide: true });
+	        }
+	    }, {
+	        key: 'search',
+	        value: function search(e) {
+	            var _this = this;
+
+	            if (e.target.value.length > 2) {
+	                this.setState({ hide: false });
+	                fetch('https://api.themoviedb.org/3/search/movie?api_key=0a069e40003a06848a4adbee16ef69ce&language=en-US&query=' + e.target.value + '&page=1&include_adult=false').then(function (response) {
+	                    return response.json();
+	                }).then(function (json) {
+	                    _this.setState({ films: json.results });
+	                });
+	            } else {
+	                this.setState({ hide: true });
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+
+	            var films = this.state.films.map(function (film) {
+	                return _react2['default'].createElement(
+	                    'div',
+	                    { className: 'searchMovie', key: film.id },
+	                    _react2['default'].createElement(
+	                        'a',
+	                        { href: '/public/#/movie-info/' + film.id },
+	                        film.original_title
+	                    )
+	                );
+	            });
+
+	            return _react2['default'].createElement(
+	                'div',
+	                null,
+	                _react2['default'].createElement('input', { type: 'text', onChange: this.search, onFocus: this.search }),
+	                _react2['default'].createElement(
+	                    'div',
+	                    { className: this.state.hide ? 'dialog' : 'dialog show', onBlur: this.hideDialog },
+	                    films
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Search;
+	})(Component);
+
+	;
+
+	module.exports = Search;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("D:\\_git\\makeitdouble.github.io\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "search.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 226 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\_git\\makeitdouble.github.io\\node_modules\\react-hot-loader\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\_git\\makeitdouble.github.io\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
@@ -25780,7 +25889,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("D:\\_git\\makeitdouble.github.io\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "fav-movie-list.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("D:\\_git\\makeitdouble.github.io\\node_modules\\react-hot-loader\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("D:\\_git\\makeitdouble.github.io\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25801,6 +25910,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _movieJsx = __webpack_require__(216);
+
+	var _movieJsx2 = _interopRequireDefault(_movieJsx);
+
 	var _genresJsx = __webpack_require__(217);
 
 	var _genresJsx2 = _interopRequireDefault(_genresJsx);
@@ -25809,8 +25922,7 @@
 
 	var _favJsx2 = _interopRequireDefault(_favJsx);
 
-	__webpack_require__(227);
-
+	__webpack_require__(228);
 	var Component = _react2['default'].Component;
 
 	var MovieInfo = (function (_Component) {
@@ -25821,27 +25933,74 @@
 
 	        _get(Object.getPrototypeOf(MovieInfo.prototype), 'constructor', this).call(this);
 	        this.state = {
+	            id: null,
 	            filmInfo: [],
-	            genrs: []
+	            genrs: [],
+	            similar: [],
+	            reccomend: []
 	        };
+	        this.upd = this.upd.bind(this);
 	    }
 
 	    _createClass(MovieInfo, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            this.setState({ id: this.props.params.id });
+	        }
+	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            var _this = this;
 
-	            fetch('https://api.themoviedb.org/3/movie/' + this.props.params.id + '?api_key=0a069e40003a06848a4adbee16ef69ce&language=en-US').then(function (response) {
+	            this.setState({ id: this.props.params.id });
+	            fetch('https://api.themoviedb.org/3/movie/' + this.state.id + '?api_key=0a069e40003a06848a4adbee16ef69ce&language=en-US').then(function (response) {
 	                return response.json();
 	            }).then(function (json) {
 	                _this.setState({ filmInfo: json, genrs: json.genres });
 	            });
+
+	            fetch('https://api.themoviedb.org/3/movie/' + this.state.id + '/recommendations?api_key=0a069e40003a06848a4adbee16ef69ce&language=en-US&page=1').then(function (response) {
+	                return response.json();
+	            }).then(function (json) {
+	                _this.setState({ reccomend: json.results.splice(0, 5) });
+	            });
+
+	            fetch('https://api.themoviedb.org/3/movie/' + this.state.id + '/similar?api_key=0a069e40003a06848a4adbee16ef69ce&language=en-US&page=1').then(function (response) {
+	                return response.json();
+	            }).then(function (json) {
+	                _this.setState({ similar: json.results.splice(0, 5) });
+	            });
 	        }
+	    }, {
+	        key: 'upd',
+	        value: function upd() {}
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+
 	            var genres = this.state.genrs.map(function (genre) {
 	                return genre.id;
+	            });
+	            var reccomend = this.state.reccomend.map(function (film) {
+	                var movieStyle = {
+	                    backgroundImage: 'url(https://image.tmdb.org/t/p/w185/' + film.poster_path + ')'
+	                };
+	                return _react2['default'].createElement(
+	                    'div',
+	                    { className: 'movie', key: film.id, style: movieStyle },
+	                    _react2['default'].createElement(_movieJsx2['default'], { title: film.title, lnk: film.id, genres: film.genre_ids })
+	                );
+	            });
+	            var similar = this.state.similar.map(function (film) {
+	                var movieStyle = {
+	                    backgroundImage: 'url(https://image.tmdb.org/t/p/w185/' + film.poster_path + ')'
+	                };
+	                return _react2['default'].createElement(
+	                    'div',
+	                    { className: 'movie', key: film.id, style: movieStyle, onClick: _this2.upd },
+	                    _react2['default'].createElement(_movieJsx2['default'], { title: film.title, lnk: film.id, genres: film.genre_ids })
+	                );
 	            });
 
 	            return _react2['default'].createElement(
@@ -25917,6 +26076,26 @@
 	                    'div',
 	                    { className: 'overview' },
 	                    this.state.filmInfo.overview
+	                ),
+	                _react2['default'].createElement(
+	                    'div',
+	                    { className: 'recommend' },
+	                    _react2['default'].createElement(
+	                        'h1',
+	                        null,
+	                        'Recommendation'
+	                    ),
+	                    reccomend
+	                ),
+	                _react2['default'].createElement(
+	                    'div',
+	                    { className: 'similar' },
+	                    _react2['default'].createElement(
+	                        'h1',
+	                        null,
+	                        'Similar'
+	                    ),
+	                    similar
 	                )
 	            );
 	        }
@@ -25932,13 +26111,13 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("D:\\_git\\makeitdouble.github.io\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "movie-info.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(228);
+	var content = __webpack_require__(229);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(224)(content, {});
@@ -25958,7 +26137,7 @@
 	}
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(221)();
@@ -25972,13 +26151,13 @@
 
 
 /***/ },
-/* 229 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(230);
+	var content = __webpack_require__(231);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(224)(content, {});
@@ -25998,7 +26177,7 @@
 	}
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(221)();
@@ -26006,13 +26185,13 @@
 
 
 	// module
-	exports.push([module.id, "html, body{\r\n    padding:0;\r\n    margin:0;\r\n}\r\nbody{\r\n    background-color:#84746d;\r\n}\r\n\r\n.header{\r\n    padding:10px 10px 0;\r\n    height:40px;\r\n    background-color: rgba(255, 94, 23, 1);\r\n    color:white;\r\n}\r\n.header a{\r\n    width: 30px;\r\n    height:30px;\r\n    display: inline-block;\r\n}\r\n.header .logo{\r\n    background: url(" + __webpack_require__(231) + ") no-repeat;\r\n    background-size: 30px;\r\n}\r\n.main-content{\r\n    background-color: white;\r\n    width:1150px;\r\n    margin: 0 auto;\r\n}\r\n\r\n\r\ndiv#test{\r\n    padding: 12px;\r\n}\r\ndiv#test:after{\r\n    content:\"\";\r\n    display: table;\r\n    clear: both;\r\n}\r\n\r\n.btn{\r\n    text-transform: capitalize;\r\n    text-align: center;\r\n    display: inline-block;\r\n    background-color: rgba(255, 94, 23, 1);\r\n    padding:5px;\r\n    margin: 10px;\r\n    width:100px;\r\n    font-weight: bold;\r\n    color:white;\r\n    cursor: pointer;\r\n}", ""]);
+	exports.push([module.id, "html, body{\r\n    padding:0;\r\n    margin:0;\r\n}\r\nbody{\r\n    background-color:#84746d;\r\n}\r\n.fr{\r\n    float:right;\r\n}\r\n.fl{\r\n    float:left;\r\n}\r\n\r\n.header{\r\n    padding:10px 10px 0;\r\n    height:40px;\r\n    background-color: rgba(255, 94, 23, 1);\r\n    color:white;\r\n}\r\n\r\n.header .nav a{\r\n    width: 30px;\r\n    height:30px;\r\n    display: inline-block;\r\n}\r\n.header .logo{\r\n    background: url(" + __webpack_require__(232) + ") no-repeat;\r\n    background-size: 30px;\r\n}\r\n.main-content{\r\n    background-color: white;\r\n    width:1150px;\r\n    margin: 0 auto;\r\n}\r\n\r\n\r\ndiv#test{\r\n    padding: 12px;\r\n}\r\ndiv#test:after{\r\n    content:\"\";\r\n    display: table;\r\n    clear: both;\r\n}\r\n\r\n.btn{\r\n    text-transform: capitalize;\r\n    text-align: center;\r\n    display: inline-block;\r\n    background-color: rgba(255, 94, 23, 1);\r\n    padding:5px;\r\n    margin: 10px;\r\n    width:100px;\r\n    font-weight: bold;\r\n    color:white;\r\n    cursor: pointer;\r\n}\r\n#search{\r\n    position: relative;\r\n\r\n}\r\n#search input{\r\n    width:190px;\r\n    padding:5px;\r\n}\r\n#search .dialog{\r\n    z-index: 2;\r\n    display: none;\r\n    position: absolute;\r\n    width: 200px;\r\n    height:300px;\r\n    background-color:white;\r\n    border:1px solid black;\r\n    overflow-x: hidden;\r\n    overflow-y: scroll;\r\n    color:black;\r\n}\r\n#search .dialog.show{\r\n    display: block;\r\n}\r\n\r\n.searchMovie a{\r\n    display: block;\r\n    text-decoration: none;\r\n   color:black;\r\n    font-size:16px;\r\n    padding:5px;\r\n    -webkit-transition:all 0.3s;\r\n    transition: all 0.3s;\r\n}\r\n.searchMovie a:hover{\r\n    background-color: rgba(80,65,50,0.5);\r\n    -webkit-transition:all 0.3s;\r\n    transition: all 0.3s;\r\n    color:black;\r\n    font-size:16px;\r\n    padding:5px;\r\n}", ""]);
 
 	// exports
 
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkQyNzYwNkQxRTE5QjExRTY4NzQ4ODIzNzY2NDdFNTAzIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkQyNzYwNkQyRTE5QjExRTY4NzQ4ODIzNzY2NDdFNTAzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RDI3NjA2Q0ZFMTlCMTFFNjg3NDg4MjM3NjY0N0U1MDMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RDI3NjA2RDBFMTlCMTFFNjg3NDg4MjM3NjY0N0U1MDMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4orEJnAAAQ9ElEQVR42uxdCViM2xufSmkhUjGE0iRUaqhkd+0VSiTauMR1s2VXlutasi/x52+9lCSlcKWilPmrQd3KvSlrSZo0jfbFpMX833MfeVy35vu+me+baZn3eebx4PvOec/5nXc97zkfTSAQ0L7/DR8+nCYj4TRz5syRSUlJN+rr64sFX6impoYbExPjP2rUKEO87fTr148G732de5oMEOK0d+/eFbW1tRWCZqi0tDTP1tZ2jAwQCdCePXt+EuAgPp/PYzKZfYgC0qGtTyCdTu8Eg9ZjMBg9lZSUusI/1fKAnj179gaokEhb48ePN/Px8TmG51llZWVtX1/fndOmTVtIiOG2KCH6+vqa69atm3///v3wkpKSPBhTQxMruDglJSV6/fr1zhoaGpgLs1OnTh1evnz5UECAPn/+zLewsNBvlypLUVGRZm1tbRUSEvKfysrKAiITBxPNnjx58hBh7fv5+a0ViEBnz57d1a4AGThwYK8dO3Z4ggpKFIhBYKTLPD09bZrqw9LSklFXV1chSrvFxcVvtbS0VNs0IN26dVOeP3++dXR0dCBSPQKSqKGhoRIkZei3fSkoKNDAvb0lTrtLly6d3eYAQRMzceJE5rlz53zfv3//XEAR5ebm/gWAqzT2u3r1aidx2wRAo9oMICYmJjq7du3yTE9P/x/wVi+QAIF35PVlsjQgpsgVtz0w7jVWVlYGrRaQHj16dPLw8JgZGxsbArq7VCBhAs/sTd++fVWDg4OP4FBz/OfPn9/Feu7UqVO/tCpAOnbsSJsyZYrlhQsXDhUVFWULpEwQqmSglY313I0bN06bmprSkYsr7LmCgoIXXbp0UWrxgIBK6g1e0nJYZWwk3RTOcT1MWgmZDX769OmDkZFRTzSO5OTkCKzn3d3dJ7VIQLS1tdVAJdnHxcWFIHeTypWenZ2ddvDgwU1jx441MTY27r5ly5YfkZdLRts7d+78uXFM4Ek5YD0fExMT2GIA+RK4mfv7+x8sLCzMohIECAzfX79+/fScOXPGQIQt/z0vMDEXxO3j9evXbDU1NYXGNlGsgeUAwOIrNTAw0JYqIIMHD0YqaRkEbglNpTDI1CDgXt5BKRNdXV1NYTzZ29uPELOvuunTp1t+325gYOABrBe3bdu2ROKAID9+4cKF00ElBaNVQaU05OfnZ5w8eXI7qCQjvPyhlf3u3bt0UfsMCQk53lS748aNG4zAEvZuZmZmAtIWlAMiLy+PAjfTL4HbSypBgAEUgdoJcHV1ndK1a1clURaNn5+fjyh9V1RUvNPT09NoLniFeImF5VyMGTNmMGWAMBgMrU2bNi1KS0uLw1od4mY2UHAIRnnpwIEDe4qrSs3NzRkIW6JMbNy40VlYuz4+Pguw2gA7up9UQEDkaY6OjmPCwsJOV1dXc6mUhg8fPry+dOnSPpQ2QSuQLEIS/ccff9wlwktqaurdDh2EZ+ohoNSAOeEJaweM/1tNTU0VsQEBaeixe/fuVVlZWclUggB2pzw+Pj4E7JA9RO2qVLnfq1evdsEdxNTXV4ONwGWnYKGewWpv0aJFdiIDAhGm4uHDhzeC/iygEohXr1492rdvnxd4Zn0lEZT26dOnS1VVVSEe3n777bdf8LaLx4uDBReGngV7RAwQJpPZNyMjg0UVCMXFxblXr171s7W1tVJRUZF4ygalPvDw+eLFi1TksNjZ2Y0CqRXKKIxDPicnJxVD4ipBOnrR6XRsQEaMGNG4MaNbXl7+igIcqths9k2Ibuf06tVLXdrlPESZLyoqykJqacmSJXZou7ipdiGKX4UjJlmloaGBDcjQoUNp6urqytnZ2Y/JROHNmzcpR44cWY+1zyxJgkhegcPh/CnqmMCAF7JYrHBvb++Fpqameo1GHxn3T58+CU0LPX/+PNnQ0FDu48ePwgEBt5Lm6+u7hQwQQMLyYTX9F0QdpTHkWuIO5IEDB9aTtONYBa55/J49ezZArDEwISHhCsY+ScOKFSssQeKaBwQapTk5OWnBQx/E4I2fnJwctX79eldYKd1a+r68mZlZX5icarKdRTwhAQS4vjwer3lAoBFaaGiou4jbn09PnDixDWzQADk5OVprIcRrYmLiDWnsu1RWVsaBamu+UA7pQBC3cXgHA40Vx8bGRgYHB1+OjIxkgYqqI2uidHR0Oru4uDiAc2FWUlLCB0cgMTw8/C7oXAGZgKCJgOgZ1eTOlIINo6M4FX6fmy2Ug18cjn3iOhjDLiMjIzoVjI4ePZrJ5XKffd8v0tFUOAXa2tqqAHquFIQEJTnlhRp1+GHWOD19+vQBVatGV1e3G9iwN0K2V7MBlH5k9xsUFHRA0mjk5+ffgID769zLNyPCJVjMg1usjgIgKgAB/95NU1Ozn5DVrB8REXGTbIcBovHL8EeDhAPTqygO+Yf+/PaHfOJnz57twVPdAkHVKCqYvH379hVcsp6eHtu9e/eOZPWL7CdE5Al4+k5LS4sB93Z5UlJSJEyoSHv1qampLAgxFJEj1azK4vP5tKNHj47D0yAY8fMUARKAd1DgNl4mM+WydevWxXj6BU/0ZOM7/fv3p3t6es6G1X4ORfF43i8sLPwL7G9vkHbat17WvwABY432vpVycnIwUybQUBGDwdAkG5Bt27YtIrLSQPcfJKtvfX19LeQ54tD9mWpqav/yUkFiVWbMmDHi+PHj28HOJkJb5f8I0Ph8LgTKfgYGBt2+9IedOkGROkgJHrUl8PHxWUxFoVxBQUEGEVCA3zVk9R8dHX0RRzqeb2pqqiusHbR/Y2hoqGNvbz/S3d3dBgEFC7gb4T11Y2NjGvjkTDxFCaBzE5WUlEhXWxMmTDAluh+/atWqeWT0PXv27B/w9GdraztW3L5wAQKBGEJX7vXr10l4UjhTp05lUmFLFixYYENwW5jv5uY2gYy+s7OzU7A6W7ly5SyyAZFvTtQaGhpQdcUVPLuhII7uVAASEBAQDUb2ZwKvKJ85cybUxsbGTIwJ0gBJcwWpV8N6VlVVlXy3X9gGlYmJSR8w8lU4Mrqcnj17dqLKVz9//jyhCpGqqqq3ZmZmuAPHL0V8llevXj1WWVmZh7cfJyenqRJRWY2AoEKAhw8f3sTD3LJly+ZQmfy7dOnSESKgoLorsIXawtodMGBAD3BKlqCsgwh1xbWockWigCBavnz5bDzcoUMpCECqCMUaLBbrEpEZy8vLewhSrvVtO1paWh2dnZ2nQAx1ER1dFmOzLZmMTAVhQNCx4oqKCg6e+jULCwsGjUJSV1dXevToUSSRiYMALNPDw2Ma0PBz584dgL+/ICMHtWbNmvlkjEmkqhNUhICHyWPHjm2lOvejq6urnpWVlSSQImVmZsagrV+pATJ58mQLPDqWy+U+h1WsSDUoEJD1LisreysNMHg8Xjo6oEPWWEQCRFlZGW9MgjyPiZLIkkLUOxxsQJkkwUhJSYkaPHhwDzLHIXLloq+v73I8TMfGxgZKKnUN7rC3JIBABYJ79+71UlNTI31fWmRABg0aRK+rqyvHkXAsZTAY3akCAVW7owg+Pj7+CkwUpXXF6PAn2MVfYDx0qsYjVm3vnTt3gvAM5Ndff11KNuMjR440hMnZxuFwMikWCFQxc9vLy2tur169OlMt5WIBAv77JJw1uuxvD6WISqj2Fk0Mm81GByo/UokCAJ1+9OjRrahiRpI7hmIBgoquCwoK8Nyi0DBx4kSR8kkoALSxsRmBTimhwzFU24fExMSwWbNm/aChoaFIkwKJfT7Ez89vM56BBgQEHCDCGJPJ1Nu/f/9akK5kSXpOaWlpt8GLpEmLxAbEzMxMD4w7pvpAt+B8e2dIU4R0tKenpyOLxbr++fPnSmkFevfv3w+D+Em+VQKCCG/CcfHixXbfv4tubECBZmBg4JHS0tIcQQuh8PDwE60WkKVLl87AM8icnJw/9fX1e6BqDhMTk55btmz5GZ1CFVB7Y0PV+/fvX3G5XMLHKM6ePbulVQKiqampjPc+EpACDrqxDdRcMVUIoAtqYmJiLi1btmzWkCFD+qIkJIpX1q5d60EUfB8fn0WtDhBEsJp2tABNUxscHHzA3Ny82SNwhw8f9iSKL6jaaa0OECsrq/5giD9JCwk+n18BE2eNZ9DHjx/fTKRtVLoDrvCwVgUI2sVDVXvSAgTc1XtEBg5xzWGC+SuOhYWFQasBBJGDg8N4aQGSmpoaQWTgqqqqtKioqAAiffB4vKf9+/fXajWAoC3b6OjosxTMN6YhfvLkyQ1REpNPnz6NJsIIPM+CeEmlVQDyxeNSgbjktrgIoEvtoZ3wdevWObHZ7BAcwdw1USZAR0enKzp8SoS3Bw8ehKA9oVYBCCKIyJVCQ0MPCwhev4TcVQDhure3txvEKV9T3BCkYZ4dh8AySNRJANvQB50xIcLrrVu3jlFxTI/S65ns7e2Hs1isYPC+KoSAUA4SELVp0yYPdONoU+38/vvv53AUWAeJMxGoVBV4KSICCnhr3lQDQupl/DCRj9EPgjPdKVOmjIMJt9TT06NXV1fXczicXPDKUkAikiBaz6NJmeLj49NdXV2dwPuKRLvUeN5ZuXLlXpAs7u7du/0pY0zQAq+JlYSENNKGDRvmgaQQuaaptrkrycmQEHlaO6eDBw9eBftAJLGoCKor2MbGxpIKftotIL179+6yYsWKeYmJiREwuT8SebdDhw5dwPG43txt1eJQq/2gCzrpJcpu5Pjx44cvWLDAGWycA8QlfUTtH9rqHRYWdtPa2no82MQP7R6Qpq5/FbKp1nfu3LkOjo6OzhB5W5EoZcZg78LB5toUFRVVt2tAdHV1hXpG6CY6W1vbSSANbqNGjZoKaoaSa6AYDMaYyMjIIFB7jiUlJfXtFpC/g6jvCB00gviC6ezsPNfOzs5RU1PTQBK8DBs2zN7f3//0rFmzFtfX17dPQMCGfEVkwIABdFBHdvBzYTKZoxE2kuZnxowZHoGBgTxYDJvbJSDKysqKbm5uP8ybN+/HSZMmTevYsSOpWVlUtQirvaZ79+64L2gGXnxycnJ4mzdv9mt3gSHaRyI7xfzx48eiqKgof5jYyeheRQ0NDYU1a9Y4NTQ0ELpLa+3atXNbRC5LwoCQReiCZtb27dt/MjQ0bLKG18vLi9Bnj9BHXlxcXMbKACFAxcXFWRcvXtwPTsAQPGWv6K5IQqUvVVVcc3NzXRkgwvdcyuPi4kKXLFliT6fT1YjwhEqZrl27doxIf/fu3buMde6yXQKCbldFH/oS94JmiM7lHj9+HEpAdVUbGRnpyAABKisrexcUFHRs+vTpw9F+OlmkpaWl8uTJkzi8fGBdv9HWP05cnZCQcC8kJCTo5s2bMfn5+eVkd1BUVMQHL2wOqL5YHR2doVjPg5TUthe39yvl5uamHjp0aKOVlRVDUjyij5lxOByh5arl5eV5WId+2ozKqq6uLg0NDT3l4OAwtnPnzlLZRhg9erQh+pxGczx6e3u7tBsvC6mllqAjjY2Ne965cycQrZFG3goLC99s2LDBFU9RRJuxIXV1dYKWwEdmZmaBtbW1u4WFxXYmkzmotLT0I5vNTuVyuRXtKpcl18Kuzk5JSXmDfuK20+731FsayQCRASIjGSAyQGTUHgGRkwHSwkIRGSAtiz7JAJEcYW7hKSgo1MgAkRDBZGPWifJ4vEIZIBIiDoeTj/VMRkZGpgwQCVFERMRtYf9fU1NTFhcXx26Tfm9LTL+jgoLQ0NBDzaXefX19l7WV+W8V+yF/W3VFRRqqlcrLy0OfRa1FNQP5+fnPvL29F2F907w1A/J/AQYA7H6wCQDIPk8AAAAASUVORK5CYII="
