@@ -41,7 +41,7 @@ class Search extends Component {
        var films = this.state.films.map( (film) => {
            return (
                <div className="searchMovie" key={film.id} >
-                   <a href={'/public/#/movie-info/' + film.id}>{film.original_title}</a>
+                   <a href={'/public/#/movie-info/' + film.id} onClick={this.hideDialog}>{film.original_title}</a>
                </div>
            );
        });

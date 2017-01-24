@@ -25756,6 +25756,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
 
 	            var films = this.state.films.map(function (film) {
 	                return _react2['default'].createElement(
@@ -25763,7 +25764,7 @@
 	                    { className: 'searchMovie', key: film.id },
 	                    _react2['default'].createElement(
 	                        'a',
-	                        { href: '/public/#/movie-info/' + film.id },
+	                        { href: '/public/#/movie-info/' + film.id, onClick: _this2.hideDialog },
 	                        film.original_title
 	                    )
 	                );
