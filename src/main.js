@@ -4,6 +4,7 @@ import {Router, Route, IndexRoute, Link, hashHistory} from 'react-router';
 require ('../css/style.css');
 
 import Films from './components/movie-list.jsx';
+import Search from './components/search.jsx';
 import FavFilms from './components/fav-movie-list.jsx';
 import MovieInfo from './components/movie-info.jsx';
 
@@ -15,4 +16,7 @@ ReactDOM.render(
     </Router>,
     document.getElementById('test')
 );
-
+ReactDOM.render(
+    <Search />,
+    document.getElementById('search')
+);

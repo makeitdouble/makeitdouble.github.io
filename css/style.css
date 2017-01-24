@@ -5,6 +5,12 @@ html, body{
 body{
     background-color:#84746d;
 }
+.fr{
+    float:right;
+}
+.fl{
+    float:left;
+}
 
 .header{
     padding:10px 10px 0;
@@ -12,7 +18,8 @@ body{
     background-color: rgba(255, 94, 23, 1);
     color:white;
 }
-.header a{
+
+.header .nav a{
     width: 30px;
     height:30px;
     display: inline-block;
@@ -48,4 +55,43 @@ div#test:after{
     font-weight: bold;
     color:white;
     cursor: pointer;
+}
+#search{
+    position: relative;
+
+}
+#search input{
+    width:190px;
+    padding:5px;
+}
+#search .dialog{
+    z-index: 2;
+    display: none;
+    position: absolute;
+    width: 200px;
+    height:300px;
+    background-color:white;
+    border:1px solid black;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    color:black;
+}
+#search .dialog.show{
+    display: block;
+}
+
+.searchMovie a{
+    display: block;
+    text-decoration: none;
+   color:black;
+    font-size:16px;
+    padding:5px;
+    transition: all 0.3s;
+}
+.searchMovie a:hover{
+    background-color: rgba(80,65,50,0.5);
+    transition: all 0.3s;
+    color:black;
+    font-size:16px;
+    padding:5px;
 }

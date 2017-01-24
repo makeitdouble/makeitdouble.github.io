@@ -1,7 +1,7 @@
 import React from 'react';
 require ('./movie.css');
 const { Component } = React;
-
+import {browserHistory} from 'react-router';
 import Genres from './genres.jsx';
 import Fav from './fav.jsx';
 
